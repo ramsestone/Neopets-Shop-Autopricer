@@ -13,7 +13,7 @@ var item_names = [];
 var links_to_JN = [];
 var item_prices = [];
 var item_dicts = [];
-const discount = 0.05 // How much in % apply based on JN price
+const discount = 0.05 // How much in % apply based on JN price (if you don't wat to apply a discount use 1)
 const rows = document.querySelector("#content > table > tbody > tr > td.content > form:nth-child(14) > table").getElementsByTagName("tr")
 
 //Creates a new column on all rows
