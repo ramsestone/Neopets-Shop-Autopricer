@@ -27,7 +27,7 @@ If you haven't already, you'll need to install Tampermonkey. Follow the instruct
 4. Delete any content in the editor and paste the copied script code.
 5. Save the script by clicking on the 'File' menu and selecting 'Save' (or pressing `Ctrl+S`).
 
-Alternatively, you can drag and drop `shop-autopricer.js` directly into your Tampermonkey dashboard to install it.
+Alternatively, you can drag and drop [shop-autopricer.js](https://github.com/ramsestone/Neopets-Shop-Autopricer/releases) directly into your Tampermonkey dashboard to install it.
 
 ### Step 3: Using the Script
 1. Go to your shop on Neopets.
@@ -36,9 +36,8 @@ Alternatively, you can drag and drop `shop-autopricer.js` directly into your Tam
 4. The script will fetch the latest prices and apply the discount if set.
 
 ## Notes
-- Ensure you are logged into Neopets for the script to function correctly.
 - You can change the discount by modifying the variable “discount” on line 16 of the script (default is 0.05, which equals 5% off).
-- If JellyNeo has `Inflation Notice` you'll have to manually search for a price.
+- If JellyNeo has `Inflation Notice` you have to manually search for a price.
 
 ## Contributing
 Feel free to submit issues or pull requests to improve the script.
