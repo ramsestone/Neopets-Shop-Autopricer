@@ -1,19 +1,43 @@
-# Neopets-Shop-Autopricer
-Tampermonkey userscript that helps with pricing items in your shop.
-It uses Jellyneo’s Item Database to collect the most recent average price. Additionally, you can apply a discount by changing the variable “discount” on line 16 (default is 0.05, which equals 5% off).
+# Neopets Shop Autopricer
 
-![20240610-0057-15 1136227-ezgif com-video-to-gif-converter](https://github.com/ramsestone/Neopets-Shop-Autopricer/assets/74755255/0617558c-cdaf-491d-9b39-909e3c4208c9)
+**Neopets Shop Autopricer** is a Tampermonkey userscript for Neopets. This script helps you automatically price items in your shop using the most recent average prices from Jellyneo’s Item Database.
+
+![20240610-0057-15 1136227-ezgif com-video-to-gif-converter](https://github.com/ramsestone/Neopets-Shop-Autopricer/assets/74755255/ab1a8497-509c-464f-a5eb-319b7e402144)
 
 ## Disclaimer
-**I'm not responsible for anything that happens to your account.** This script should be safe to use since it doesn’t send anything to Neopets’ servers, as you still have to click the "update" button manually.
+I'm not responsible for any actions taken against your account as a result of using this script. Use at your own risk. This script is designed to be safe, as it does not send any data to Neopets' servers; you still need to manually click the “update” button.
+
+## Features
+- Automatically fetches the most recent average prices from Jellyneo’s Item Database.
+- Allows you to apply a discount to the fetched prices.
 
 ## Installation
+### Step 1: Install Tampermonkey
+If you haven't already, you'll need to install Tampermonkey. Follow the instructions for your browser:
 
-1. You need to install Tampermonkey or Greasemonkey (if you’re using Firefox).
-2. Copy the raw content of 'shop-autopricer.js'.
-3. Go to your userscripts dashboard and create a new script.
-4. Paste the code you copied in step 2, save changes, and you're done!
+- [Tampermonkey for Chrome](https://tampermonkey.net/?ext=dhdg&browser=chrome)
+- [Tampermonkey for Firefox](https://tampermonkey.net/?ext=dhdg&browser=firefox)
+- [Tampermonkey for Safari](https://tampermonkey.net/?ext=dhdg&browser=safari)
+- [Tampermonkey for Microsoft Edge](https://tampermonkey.net/?ext=dhdg&browser=edge)
 
-Alternatively, you can just drag and drop **'shop-autopricer.js'** to your Tampermonkey dashboard to install it.
+### Step 2: Install the Script
+1. Copy the raw content of `shop-autopricer.js`.
+2. Open the Tampermonkey dashboard by clicking on the Tampermonkey icon in your browser toolbar and selecting 'Dashboard'.
+3. Click on the 'Add a new script' button (a '+' icon).
+4. Delete any content in the editor and paste the copied script code.
+5. Save the script by clicking on the 'File' menu and selecting 'Save' (or pressing `Ctrl+S`).
 
-Once installed, you'll find new buttons in your shop. The first time, you'll receive a request to accept **cross-origin resources**. This is necessary for the script to send a request to Jellyneo. Click on 'Always allow'.
+Alternatively, you can drag and drop `shop-autopricer.js` directly into your Tampermonkey dashboard to install it.
+
+### Step 3: Using the Script
+1. Go to your shop on Neopets.
+2. You will find new buttons added by the script.
+3. The first time you use the script, you’ll receive a request to accept cross-origin resources. This is necessary for the script to send a request to Jellyneo. Click on ‘Always allow’.
+4. The script will fetch the latest prices and apply the discount if set.
+
+## Notes
+- Ensure you are logged into Neopets for the script to function correctly.
+- You can change the discount by modifying the variable “discount” on line 16 of the script (default is 0.05, which equals 5% off).
+
+## Contributing
+Feel free to submit issues or pull requests to improve the script.
