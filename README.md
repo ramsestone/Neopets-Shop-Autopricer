@@ -5,7 +5,7 @@
 ![20240610-0057-15 1136227-ezgif com-video-to-gif-converter](https://github.com/ramsestone/Neopets-Shop-Autopricer/assets/74755255/ab1a8497-509c-464f-a5eb-319b7e402144)
 
 ## Disclaimer
-I'm not responsible for any actions taken against your account as a result of using this script. Use at your own risk. This script is designed to be safe, as it does not send any data to Neopets' servers; you still need to manually click the “update” button.
+I'm not responsible for any actions taken against your account as a result of using this script. Use at your own risk. This script is designed to be safe, as it does not send any data to Neopets' servers; you still need to manually click a button.
 
 ## Features
 - Automatically fetches the most recent average prices from Jellyneo’s Item Database.
