@@ -38,6 +38,7 @@ Alternatively, you can drag and drop `shop-autopricer.js` directly into your Tam
 ## Notes
 - Ensure you are logged into Neopets for the script to function correctly.
 - You can change the discount by modifying the variable “discount” on line 16 of the script (default is 0.05, which equals 5% off).
+- If JellyNeo has `Inflation Notice` you'll have to manually search for a price.
 
 ## Contributing
 Feel free to submit issues or pull requests to improve the script.
