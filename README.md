@@ -2,7 +2,7 @@
 Tampermonkey userscript that helps on pricing items in your shop.
 It uses Jellyneo's Item Database to collect the most recent average price, additionally you can apply a discount changing the variable "discount" at line 16 (default is 0.05 wich equals to 5% off)
 
-![](https://s7.ezgif.com/tmp/ezgif-7-43d65dc1b0.gif)
+![20240610-0057-15 1136227-ezgif com-video-to-gif-converter](https://github.com/ramsestone/Neopets-Shop-Autopricer/assets/74755255/0617558c-cdaf-491d-9b39-909e3c4208c9)
 
 ## Disclaimer
 **I'm not held responsible for anything that happens to your account.** This script should be safe to use since it doesn't send anything to Neopet's servers, since you still have to click the "update" button manually.
