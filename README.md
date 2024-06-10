@@ -11,4 +11,4 @@ It uses Jellyneo's Item Database to collect the most recent average price, addit
 1. You have to install [Tampermonkey](https://addons.opera.com/en/extensions/details/tampermonkey-beta/ "Tampermonkey") or [Greasemonkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/ "Greasemonkey") (in case your'e on Firefox)
 2. Copy the raw content of 'shop-autopricer.js'
 3. Go to your usercripts dashboard and create a new one
-4. Paste the code you copied in step 2 and save changes and done!
+4. Paste the code you copied in step 2, save changes and done!
