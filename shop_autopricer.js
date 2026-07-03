@@ -17,6 +17,8 @@ var links_to_JN = [];
 var item_prices = [];
 var item_dicts = [];
 const discount = 0.025 // How much in % apply based on JN price
+
+const updateButton = document.getElementById('market-your-update');
 var table = document.querySelector("#market-your-app > div > table")
 if(table == null){
     table = document.querySelector("#content > table > tbody > tr > td.content > form > table > tbody")
@@ -65,10 +67,8 @@ async function getPrice(link, input_objcet){
     })
   })
   input_objcet.value = await price
+  updateButton.disabled = false;
 }
-
-
-get_item_info()
 
 // Inject the custom CSS rules with !important flags to override site defaults
 const customStyles = document.createElement('style');
@@ -104,21 +104,87 @@ customStyles.innerHTML = `
 `;
 document.head.appendChild(customStyles);
 
-//Creates and insert a button on the document
-for (let i = 0; i < item_dicts.length; i++) {
-  const price_button = document.createElement("button")
-  price_button.classList.add('custom-skeuomorphic-btn');
-  price_button.innerHTML = "$"
-  price_button.style.marginLeft = "5px"
+// 1. Encapsulated scanning function
+// This function must scan the DOM from scratch every time it runs.
+function getFreshItems() {
+    const freshItems = [];
 
-  const curent_row = item_dicts[i];
-  const parent_node = curent_row["Input Object"].parentNode
-  const link = curent_row["Link to JN"]
-  const input = curent_row["Input Object"]
-  parent_node.appendChild(price_button)
+    // CRITICAL: We query the rows INSIDE the function so we always get the live DOM nodes.
+    // Assuming your rows are standard table rows inside #market-your-app
+    const rows = document.querySelectorAll('#market-your-app table tbody tr');
 
-  price_button.onclick = e => {
-    e.preventDefault()
-    getPrice(link, input)
-  }
+    // i = 1 skips the header row
+    for (let i = 0; i < rows.length; i++) {
+        const row = rows[i];
+
+        const priceInput = row.querySelector(".market-your__cost-field > input");
+        const nameElement = row.querySelector(".market-your-item__name");
+
+        // Safety validation to prevent null pointer exceptions
+        if (priceInput && nameElement) {
+            const itemName = nameElement.textContent.trim();
+            const nameForLink = itemName.replaceAll(" ", "+");
+            const link = `https://items.jellyneo.net/search/?name=${nameForLink}&name_type=3`;
+
+            // Push to the local array, not a global one
+            freshItems.push({
+                "Item Name": itemName,
+                "Link to JN": link,
+                "Input Object": priceInput
+            });
+        }
+    }
+
+    return freshItems; // Returns the newly built array
+}
+
+// 2. Injection logic
+function injectCustomButtons() {
+    // Obtain the updated items directly from the live DOM
+    const currentItems = getFreshItems();
+
+    for (let i = 0; i < currentItems.length; i++) {
+        const currentRow = currentItems[i];
+        const targetInput = currentRow["Input Object"];
+        const link = currentRow["Link to JN"];
+
+        // Anti-duplication check: Is our custom button already next to this input?
+        if (targetInput && targetInput.parentNode && !targetInput.parentNode.querySelector('.custom-skeuomorphic-btn')) {
+
+            const priceButton = document.createElement("button");
+            priceButton.classList.add('custom-skeuomorphic-btn');
+            priceButton.innerHTML = "💲";
+
+            targetInput.parentNode.appendChild(priceButton);
+
+            priceButton.onclick = (e) => {
+                e.preventDefault();
+                // Pass the fresh targetInput to your existing async function
+                getPrice(link, targetInput);
+            };
+        }
+    }
+}
+
+// 3. Execute immediately on first load
+injectCustomButtons();
+
+// 4. Attach the MutationObserver to the main stable container
+const tableContainer = document.querySelector('#market-your-app');
+
+if (tableContainer) {
+    const observer = new MutationObserver(() => {
+        // When the app updates, wait 300ms for rendering to finish, then inject again
+        setTimeout(() => {
+            injectCustomButtons();
+        }, 300);
+    });
+
+    observer.observe(tableContainer, {
+        childList: true,
+        subtree: true
+    });
+
+} else {
+    console.error('Observer container #market-your-app was not found.');
 }
