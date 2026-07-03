@@ -17,8 +17,7 @@ var links_to_JN = [];
 var item_prices = [];
 var item_dicts = [];
 const discount = 0.025 // How much in % apply based on JN price
-var table = document.querySelector("#content > table > tbody > tr > td.content > form:nth-child(14) > table > tbody")
-console.log(table)
+var table = document.querySelector("#market-your-app > div > table")
 if(table == null){
     table = document.querySelector("#content > table > tbody > tr > td.content > form > table > tbody")
     }
@@ -26,13 +25,14 @@ const rows = table.getElementsByTagName("tr")
 
 
 function get_item_info() {
-  for (i = 1; i < rows.length - 3; i++) {
+  for (i = 1; i < rows.length; i++) {
     const row = rows[i]
     //Saves all input fields on a list
-    var price_input = row.getElementsByTagName("td")[4].querySelector("input");
+    var price_input = row.querySelector(".market-your__cost-field > input");
 
     //Saves all item names in a list with the same index as their respective input feild
-    var item_name = row.getElementsByTagName("td")[0].textContent
+    var item_name = row.querySelector(".market-your-item__name").textContent
+    // document.querySelector("#market-your-app > div > table > tbody > tr:nth-child(1) > td:nth-child(1) > span > div > div.market-your-item__info > span.market-your-item__name")
 
     //Creates a search string for JN
     var name_for_link = item_name.replaceAll(" ", "+")
@@ -45,7 +45,6 @@ function get_item_info() {
       "Input Object": price_input
     })
   }
-
 }
 
 async function getPrice(link, input_objcet){
@@ -71,10 +70,45 @@ async function getPrice(link, input_objcet){
 
 get_item_info()
 
+// Inject the custom CSS rules with !important flags to override site defaults
+const customStyles = document.createElement('style');
+customStyles.innerHTML = `
+    .custom-skeuomorphic-btn {
+        /* Force the green gradient over site defaults */
+        background: linear-gradient(to bottom, #52c234 0%, #28841a 100%) !important;
+
+        /* Force structural styling */
+        border: 2px solid #1a1a1a !important;
+        border-radius: 16px !important;
+        box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.8),
+                    inset 0 4px 4px rgba(255, 255, 255, 0.4) !important;
+
+        /* Typography and layout */
+        color: #111 !important;
+        font-weight: bold !important;
+        padding: 2px 10px !important;
+        margin-left: 5px !important;
+        cursor: pointer !important;
+
+        /* Strip default OS/Browser button appearances */
+        -webkit-appearance: none !important;
+        appearance: none !important;
+
+        transition: filter 0.1s !important;
+    }
+
+    .custom-skeuomorphic-btn:active {
+        filter: brightness(0.85) !important;
+        box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.8) !important;
+    }
+`;
+document.head.appendChild(customStyles);
+
 //Creates and insert a button on the document
 for (let i = 0; i < item_dicts.length; i++) {
   const price_button = document.createElement("button")
-  price_button.innerHTML = "💲"
+  price_button.classList.add('custom-skeuomorphic-btn');
+  price_button.innerHTML = "$"
   price_button.style.marginLeft = "5px"
 
   const curent_row = item_dicts[i];
